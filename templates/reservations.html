@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Réservations</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Client</th>
+                <th>Représentation</th>
+                <th>Salle</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in liste_reservations %}
+            <tr>
+                <td>{{ reservation.id_reservation }}</td>
+                <td>{{ reservation.date_reservation }}</td>
+                <td>{{ reservation.id_client }}</td>
+                <td>{{ reservation.id_representation }}</td>
+                <td>{{ reservation.id_salle }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

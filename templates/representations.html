@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Nos Représentations</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for representation in liste_representations %}
+            <tr>
+                <td> <img loading="lazy" src="/static/images/{{ representation.image }}" alt="image"/> </td>
+                <td>{{ representation.id_representation }}</td>
+                <td>{{ representation.titre }}</td>
+                <td>{{ representation.type }}</td>
+                <td>{{ representation.date_representation }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
