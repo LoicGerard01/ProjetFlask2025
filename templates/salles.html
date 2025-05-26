@@ -1,23 +1,32 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h1>Nos Salles</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Numéro Salle</th>
-                <th>Nombre de Sièges</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for salle in liste_salles %}
-            <tr>
-                <td>{{ salle.id_salle }}</td>
-                <td>{{ salle.num_salle }}</td>
-                <td>{{ salle.nb_sieges }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Nos Salles</h1>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped align-middle shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Numéro de Salle</th>
+                    <th scope="col">Nombre de Sièges</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for salle in liste_salles %}
+                <tr>
+                    <td>{{ salle.id_salle }}</td>
+                    <td>{{ salle.num_salle }}</td>
+                    <td>{{ salle.nb_sieges }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3" class="text-center text-muted">Aucune salle enregistrée.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

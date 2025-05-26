@@ -1,15 +1,33 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="mt-5">
-        <h2>{{ representation.titre }}</h2>
-        <img src="{{ url_for('static', filename='images/' + (representation.image or 'default.jpg')) }}"
-             class="img-fluid mb-3" alt="{{ representation.titre }}">
-
-        <p><strong>Type :</strong> {{ representation.type }}</p>
-        <p><strong>Date :</strong> {{ representation.date_representation.strftime('%d/%m/%Y') if representation.date_representation else 'À venir' }}</p>
-        <p><strong>Description :</strong></p>
-        <p>{{ representation.description or "Aucune description disponible." }}</p>
-
-        <a href="{{ url_for('programmes') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="row g-0">
+            <div class="col-md-5">
+                <img src="{{ url_for('static', filename='images/' + (representation.image or 'default.jpg')) }}"
+                     class="img-fluid rounded-start" alt="{{ representation.titre }}">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h2 class="card-title">{{ representation.titre }}</h2>
+                    <p class="card-text">
+                        <span class="badge bg-primary">{{ representation.type or 'Type inconnu' }}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>Date :</strong>
+                        {{ representation.date_representation.strftime('%d/%m/%Y') if representation.date_representation else 'À venir' }}
+                    </p>
+                    <hr>
+                    <p class="card-text">
+                        <strong>Description :</strong><br>
+                        {{ representation.description or "Aucune description disponible." }}
+                    </p>
+                    <a href="{{ url_for('programmes') }}" class="btn btn-outline-secondary mt-3">
+                        &larr; Retour à la liste
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}

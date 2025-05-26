@@ -1,17 +1,24 @@
 from datetime import date
 from flask import render_template, session
+
 from . import app, models
 
 @app.route('/')
 def accueil():
-    representations = models.Representation.query.filter(
-        models.Representation.date_representation >= date.today()
-    ).order_by(models.Representation.date_representation.asc()).all()
-    return render_template('accueil.html', title="Accueil Client", representations=representations)
+    today = date.today()
+    representations = (
+        models.Representation.query
+        .filter(models.Representation.date_representation > today)
+        .order_by(models.Representation.date_representation.asc())
+        .limit(3)
+        .all()
+    )
+    return render_template('accueil.html', title="Accueil", representations=representations)
 
 @app.route('/programmes')
 def programmes():
-    liste_representations = models.Representation.query.order_by(models.Representation.date_representation.asc()).all()
+    today = date.today()
+    liste_representations = models.Representation.query.filter(models.Representation.date_representation>today).order_by(models.Representation.date_representation.asc()).all()
     return render_template('programmes.html', title="Nos programmes", representations=liste_representations)
 
 

@@ -1,31 +1,44 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h1>Nos Représentations</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th>ID</th>
-                <th>Titre</th>
-                <th>Type</th>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Prix</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for representation in liste_representations %}
-            <tr>
-                <td> <img loading="lazy" src="/static/images/{{ representation.image }}" alt="image"/> </td>
-                <td>{{ representation.id_representation }}</td>
-                <td>{{ representation.titre }}</td>
-                <td>{{ representation.type }}</td>
-                <td>{{ representation.date_representation }}</td>
-                <td>{{ representation.description }}</td>
-                <td>{{ representation.prix }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container mt-5">
+    <h1 class="mb-4">Nos Représentations</h1>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle table-bordered shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Affiche</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Prix (€)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for representation in liste_representations %}
+                <tr>
+                    <td class="text-center">
+                        <img loading="lazy"
+                             src="{{ url_for('static', filename='images/' + (representation.image or 'default.jpg')) }}"
+                             alt="{{ representation.titre }}"
+                             class="img-thumbnail"
+                             style="width: 80px; height: auto;">
+                    </td>
+                    <td>{{ representation.id_representation }}</td>
+                    <td><strong>{{ representation.titre }}</strong></td>
+                    <td><span class="badge bg-primary">{{ representation.type }}</span></td>
+                    <td>
+                        {{ representation.date_representation.strftime('%d/%m/%Y') if representation.date_representation else 'À venir' }}
+                    </td>
+                    <td>{{ (representation.description or '')[:100] ~ ('...' if representation.description and representation.description|length > 100 else '') }}</td>
+                    <td>{{ representation.prix }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
