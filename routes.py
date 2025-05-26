@@ -1,9 +1,19 @@
-from flask import render_template
+from datetime import date
+from flask import render_template, session
 from . import app, models
 
 @app.route('/')
 def accueil():
-    return render_template('accueil.html', title="Accueil")
+    representations = models.Representation.query.filter(
+        models.Representation.date_representation >= date.today()
+    ).order_by(models.Representation.date_representation.asc()).all()
+    return render_template('accueil.html', title="Accueil Client", representations=representations)
+
+@app.route('/programmes')
+def programmes():
+    liste_representations = models.Representation.query.order_by(models.Representation.date_representation.asc()).all()
+    return render_template('programmes.html', title="Nos programmes", representations=liste_representations)
+
 
 @app.route('/clients')
 def clients():
@@ -15,6 +25,12 @@ def representations():
     liste_representations = models.Representation.query.all()
     return render_template('representations.html', title="Représentations", liste_representations=liste_representations)
 
+@app.route('/representation/<int:id>')
+def detail_representation(id):
+    rep = models.Representation.query.get_or_404(id)
+    return render_template('representation_detail.html', title=rep.titre, representation=rep)
+
+
 @app.route('/reservations')
 def reservations():
     liste_reservations = models.Reservation.query.all()
@@ -24,3 +40,4 @@ def reservations():
 def salles():
     liste_salles = models.Salle.query.all()
     return render_template('salles.html', title="Salles", liste_salles=liste_salles)
+

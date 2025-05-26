@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="mt-5">
+        <h2>{{ representation.titre }}</h2>
+        <img src="{{ url_for('static', filename='images/' + (representation.image or 'default.jpg')) }}"
+             class="img-fluid mb-3" alt="{{ representation.titre }}">
+
+        <p><strong>Type :</strong> {{ representation.type }}</p>
+        <p><strong>Date :</strong> {{ representation.date_representation.strftime('%d/%m/%Y') if representation.date_representation else 'À venir' }}</p>
+        <p><strong>Description :</strong></p>
+        <p>{{ representation.description or "Aucune description disponible." }}</p>
+
+        <a href="{{ url_for('programmes') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+    </div>
+{% endblock %}

@@ -18,9 +18,11 @@ class Representation(db.Model):
     type = db.Column(db.String(50), nullable=True)
     date_representation = db.Column(db.Date, nullable=True)
     image = db.Column(db.String(50), nullable=True , default='image.jpg')
+    description = db.Column(db.Text, nullable=True)
+    prix = db.Column(db.Text, nullable=True)
 
     def __repr__(self):
-        return f"{self.titre} ({self.type}) - {self.date_representation} - {self.id_representation} - {self.reservations} - {self.image} "
+        return f"{self.titre} ({self.type}) - {self.date_representation} - {self.id_representation} - {self.reservations} - {self.image} - {self.prix} - {self.description} "
 
 
 class Reservation(db.Model):
