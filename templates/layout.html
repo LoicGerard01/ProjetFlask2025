@@ -10,7 +10,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
 </head>
-
+    <header class="bg-dark text-white text-center py-5 mb-4"
+        style="background: url('{{ url_for('static', filename='images/theatre.jpg') }}') no-repeat center center / cover;">
+        <div class="container">
+            <h1 class="display-5 fw-bold">Bienvenue sur notre plateforme de réservation</h1>
+            <p class="lead">Spectacles, théâtre, concerts... Réservez facilement en ligne</p>
+        </div>
+    </header>
 <body>
 
     <!-- Menu -->
