@@ -9,11 +9,18 @@
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('programmes') }}">Nos programmes</a>
+            </li>
+        </ul>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Formulaire de recherche -->
             <form class="d-flex" role="search" method="GET" action="{{ url_for('recherche') }}">
-                <input class="form-control me-2" type="search" name="query" placeholder="Rechercher un spectacle..." aria-label="Search">
+                <input class="form-control me-2" type="search" name="query" placeholder="Rechercher un spectacle..."
+                       aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Rechercher</button>
             </form>
 
@@ -32,11 +39,8 @@
                     </a>
                 {% endif %}
             </div>
-        <!-- Liens de navigation -->
+            <!-- Liens de navigation -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('programmes') }}">Nos programmes</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('clients') }}">Clients</a>
                 </li>

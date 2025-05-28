@@ -1,63 +1,61 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <h3 class="mt-4">Nos programmes à venir prochainement</h3>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for rep in representations %}
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <!-- Image -->
-                    <img src="{{ url_for('static', filename='images/' + rep.image) }}" class="card-img-top"
-                         alt="{{ rep.titre }}">
+<h3 class="mt-4 text-center titre-accueil">Nos programmes à venir prochainement</h3>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for rep in representations %}
+        <div class="col">
+            <div class="card h-100 shadow-sm representation-card">
+                <!-- Image -->
+                <img src="{{ url_for('static', filename='images/' + rep.image) }}" class="card-img-top"
+                     alt="{{ rep.titre }}">
 
-                    <div class="card-body">
-                        <h5 class="card-title">{{ rep.titre }}</h5>
-                        <p class="card-text">
-                            <strong>Type :</strong> {{ rep.type }}<br>
-                            <strong>Date :</strong> {{ rep.date_representation.strftime('%d/%m/%Y') }}<br>
-                            <strong>Prix :</strong> {{ rep.prix }} €
-                        </p>
+                <div class="card-body">
+                    <h5 class="card-title">{{ rep.titre }}</h5>
+                    <p class="card-text">
+                        <strong>Type :</strong> {{ rep.type }}<br>
+                        <strong>Date :</strong> {{ rep.date_representation.strftime('%d/%m/%Y') }}<br>
+                        <strong>Prix :</strong> {{ rep.prix }} €
+                    </p>
 
-                        <!-- Bouton description modale   <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal_{{ rep.id_representation }}">
-                    Voir la description
-                </button>-->
+                    <!-- Détail -->
+                    <a href="{{ url_for('detail_representation', id=rep.id_representation) }}"
+                       class="btn btn-primary mt-2">
+                        Détails
+                    </a>
 
-                        <a href="{{ url_for('detail_representation', id=rep.id_representation) }}"
-                           class="btn btn-primary mt-2">
-                            Détails
-                        </a>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="modal_{{ rep.id_representation }}" tabindex="-1"
-                             aria-labelledby="modalLabel_{{ rep.id_representation }}" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modalLabel_{{ rep.id_representation }}">Description
-                                            de {{ rep.titre }}</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Fermer"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        {{ rep.description | e | replace('\n', '<br>') | safe }}
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer
-                                        </button>
-                                    </div>
+                    <!-- Modal (description) -->
+                    <div class="modal fade" id="modal_{{ rep.id_representation }}" tabindex="-1"
+                         aria-labelledby="modalLabel_{{ rep.id_representation }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel_{{ rep.id_representation }}">
+                                        Description de {{ rep.titre }}
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Fermer"></button>
+                                </div>
+                                <div class="modal-body">
+                                    {{ rep.description | e | replace('\n', '<br>') | safe }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                                 </div>
                             </div>
                         </div>
-
-                        {% if session.get("client") %}
-                            <a href="{{ url_for('reservations') }}" class="btn btn-success mt-3">Réserver</a>
-                        {% else %}
-                            <a href="#" class="btn btn-warning mt-3" data-bs-toggle="tooltip"
-                               title="Vous devez vous connecter pour réserver">Se connecter pour réserver</a>
-                        {% endif %}
                     </div>
+
+                    {% if session.get("client") %}
+                        <a href="{{ url_for('reservations') }}" class="btn btn-success mt-3">Réserver</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="btn btn-warning mt-3" data-bs-toggle="tooltip"
+                           title="Vous devez vous connecter pour réserver">Se connecter pour réserver</a>
+                    {% endif %}
                 </div>
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
+</div>
+
 {% endblock %}

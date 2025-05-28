@@ -123,3 +123,100 @@ footer {
 .table th {
     vertical-align: middle;
 }
+
+/* Titre principal page accueil */
+.titre-accueil {
+    font-size: 2em;
+    font-style: italic;
+    color: #4B0000;
+    margin-bottom: 2rem;
+}
+
+/* Style carte représentation */
+.representation-card {
+    border: 2px solid #4B0000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fffdf9;
+}
+.representation-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Titre dans les cartes */
+.representation-card h5.card-title {
+    font-size: 1.3em;
+    color: #4B0000;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Texte descriptif */
+.representation-card .card-text {
+    color: #333;
+    font-size: 0.95em;
+}
+
+/* Boutons personnalisés */
+.btn-primary {
+    background-color: #4B0000;
+    border-color: #4B0000;
+}
+.btn-primary:hover {
+    background-color: #800000;
+    border-color: #800000;
+}
+
+.btn-success {
+    background-color: #198754;
+    border: none;
+}
+.btn-success:hover {
+    background-color: #146c43;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+}
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+/* Titre page de représentations */
+.titre-representations {
+    font-size: 2em;
+    color: #4B0000;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+/* Image miniature */
+.affiche-img {
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Style de la table */
+.table-style th,
+.table-style td {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.95em;
+}
+
+/* En-tête de la table */
+.table-header-custom {
+    background-color: #4B0000;
+    color: #fff;
+}
+
+/* Cellule description défilante */
+.description-cell {
+    max-height: 100px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    padding: 8px;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}
