@@ -1,0 +1,32 @@
+{% extends 'accueil.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h3>Inscription</h3>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <form method="post">
+        <div class="mb-3">
+            <label for="nom_client" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="nom_client" name="nom_client" required>
+        </div>
+        <div class="mb-3">
+            <label for="prenom_client" class="form-label">Prénom</label>
+            <input type="text" class="form-control" id="prenom_client" name="prenom_client" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Adresse e-mail</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="mb-3">
+            <label for="mobile" class="form-label">Mobile</label>
+            <input type="text" class="form-control" id="mobile" name="mobile" required>
+        </div>
+        <button type="submit" class="btn btn-primary" name="register_submit">S'inscrire</button>
+    </form>
+</div>
+{% endblock %}

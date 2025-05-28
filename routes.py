@@ -1,5 +1,5 @@
 from datetime import date
-from flask import render_template, session
+from flask import render_template, session, redirect, url_for, request
 
 from . import app, models
 
@@ -48,3 +48,20 @@ def salles():
     liste_salles = models.Salle.query.all()
     return render_template('salles.html', title="Salles", liste_salles=liste_salles)
 
+@app.route('/recherche')
+def recherche():
+    query = request.args.get('query', '')
+    return f"Résultats pour: {query}"
+
+# Connexion (démo sans vérification)
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+@app.route('/disconnect')
+def disconnect():
+    return redirect(url_for('accueil'))

@@ -1,27 +1,56 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="{{ url_for('accueil') }}">
             🎭 Théâtre Condorcet
         </a>
-        <a class="navbar-brand" href="{{ url_for('accueil') }}">Accueil</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('programmes') }}">Tous les programmes</a></li>
 
-            </ul>
-        </div>
-            <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('clients') }}">Clients</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('representations') }}">Représentations</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('reservations') }}">Réservations</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('salles') }}">Salles</a></li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Formulaire de recherche -->
+            <form class="d-flex" role="search" method="GET" action="{{ url_for('recherche') }}">
+                <input class="form-control me-2" type="search" name="query" placeholder="Rechercher un spectacle..." aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </form>
 
+            <!-- Connexion / Déconnexion -->
+            <div class="d-flex align-items-center ms-3">
+                {% if session.get('client') %}
+                    <a href="{{ url_for('disconnect') }}" class="btn btn-outline-light me-2">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-light me-2">
+                        <i class="fas fa-sign-in-alt"></i> Connexion
+                    </a>
+                    <a href="{{ url_for('register') }}" class="btn btn-warning">
+                        <i class="fas fa-user-plus"></i> S’inscrire
+                    </a>
+                {% endif %}
+            </div>
+        <!-- Liens de navigation -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('programmes') }}">Nos programmes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('clients') }}">Clients</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('representations') }}">Représentations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('reservations') }}">Réservations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('salles') }}">Salles</a>
+                </li>
             </ul>
+
         </div>
     </div>
 </nav>
